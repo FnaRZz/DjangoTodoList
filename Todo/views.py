@@ -1,9 +1,11 @@
-from http.client import HTTPResponse
-
+from .models import Tasks
 from django.shortcuts import render
 
 # Create your views here.
 
 
 def index(request):
-    return HTTPResponse("Hello World")
+    task = Tasks.objects.all()
+    return render(request, 'index.html', {
+        task: 'task',
+    })
