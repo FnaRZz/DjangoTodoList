@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+
+    <input name="task_name" required>
+    <textarea name="task_description"></textarea>
+    <input type="checkbox" name="task_completed">
+    <input type="date" name="task_date">
+
+    <button type="submit">Создать задачу</button>
+</form>
+</body>
+</html>
