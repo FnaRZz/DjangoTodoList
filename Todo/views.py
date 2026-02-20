@@ -1,5 +1,7 @@
+from gc import get_objects
+
 from .models import Task
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 
@@ -25,3 +27,9 @@ def task_create(request):
         return redirect('Todo:home')
     return render(request, 'create_task.html')
 
+def task_delete(request, pk):
+    task = get_object_or_404(Task, id=pk)
+    if request.method == 'POST':
+        task.delete()
+        return redirect('Todo:home')
+    return render(request,'task_list.html')
