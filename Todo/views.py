@@ -33,3 +33,21 @@ def task_delete(request, pk):
         task.delete()
         return redirect('Todo:home')
     return render(request,'task_list.html')
+
+def task_edit(request, pk):
+    task = get_object_or_404(Task, id=pk)
+    if request.method == 'POST':
+        task.title = request.POST['title']
+        task.description = request.POST['description']
+        task.completed = request.POST['completed'] == 'on'
+        task.save()
+        return redirect('Todo:home')
+    return render(request, 'task_edit.html', {'task': task})
+
+def task_more(request, pk):
+    task = get_object_or_404(Task, id=pk)
+    if request.method == 'GET':
+        task.title = request.POST['title']
+        task.description = request.POST['description']
+        return redirect('Todo:home')
+    return render(request,'task_more.html', {'task': task})

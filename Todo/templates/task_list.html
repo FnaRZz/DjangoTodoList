@@ -89,6 +89,19 @@
         .btn-delete:hover {
             background-color: #ffebee;
         }
+        .btn-edit {
+            background: none;
+            border: none;
+            color: #1976d2;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .btn-edit:hover {
+            background-color: #e3f2fd;
+        }
     </style>
 </head>
 <body>
@@ -120,6 +133,9 @@
                             {% endif %}
                         </td>
                         <td>
+                            <!-- Кнопка редактирования -->
+                            <a href="{% url 'Todo:task_edit' task.id %}" class="btn-edit">Редактировать</a>
+
                             <!-- Форма удаления -->
                             <form method="post" action="{% url 'Todo:task_delete' task.id %}" style="display:inline;">
                                 {% csrf_token %}
